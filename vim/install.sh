@@ -28,7 +28,7 @@ fi
 
 DOTFILES_ROOT="`pwd`"
 
-ln -s $DOTFILES_ROOT/vim ~/.vim
+cp -R $DOTFILES_ROOT/vim ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
 if test ! -d $HOME/.vim/bundle/vundle
