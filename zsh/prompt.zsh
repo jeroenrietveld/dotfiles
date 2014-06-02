@@ -18,11 +18,12 @@ git_dirty() {
   then
     echo ""
   else
-    if [[ $($git status --porcelain) == "" ]]
+    #if [[ $($git status --porcelain) == "" ]]
+    if [[ $(unpushed) == "" ]]
     then
-      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
+      echo "%{$FX[bold]%}%{$FG[075]%}$(git_prompt_info)%{$reset_color%}"
     else
-      echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
+      echo "%{$FX[bold]%}%{$FG[214]%}$(git_prompt_info)%{$reset_color%}"
     fi
   fi
 }
@@ -40,9 +41,18 @@ unpushed () {
 need_push () {
   if [[ $(unpushed) == "" ]]
   then
-    echo " "
+    echo ""
   else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
+    echo "%{$FX[bold]%}%{$FG[214]%}!%{$reset_color%}"
+  fi
+}
+
+uncomitted_changes() {
+  if ! git diff-files --quiet --ignore-submodules
+  then
+    echo "%{$FX[bold]%}%{$FG[214]%}*%{$reset_color%}"
+  else
+    echo ""
   fi
 }
 
@@ -61,17 +71,17 @@ ruby_version() {
 rb_prompt() {
   if ! [[ -z "$(ruby_version)" ]]
   then
-    echo "%{$fg_bold[yellow]%}$(ruby_version)%{$reset_color%} "
+    echo "%{$FX[bold]%}%{$FG[075]%}$(ruby_version)%{$reset_color%} "
   else
     echo ""
   fi
 }
 
 directory_name() {
-  echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
+  echo "%{$FX[bold]%}%{$FG[032]%}%1/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(rb_prompt)in $(directory_name)%{$FG[032]%}(%{$reset_color%}$(git_dirty)$(uncomitted_changes)%{$FG[032]%})%{$reset_color%}› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
