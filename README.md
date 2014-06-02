@@ -1,5 +1,3 @@
-# holman does dotfiles
-
 ## dotfiles
 
 These are my dotfiles, based on [Zach Holman's](https://github/holman) [dotfiles](https://github.com/holman/dotfiles).
