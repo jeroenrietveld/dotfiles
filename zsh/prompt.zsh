@@ -21,9 +21,9 @@ git_dirty() {
     #if [[ $($git status --porcelain) == "" ]]
     if [[ $(unpushed) == "" ]]
     then
-      echo "%{$FX[bold]%}%{$FG[075]%}$(git_prompt_info)%{$reset_color%}"
+      echo "%{$FG[032]%}(%{$reset_color%}%{$FX[bold]%}%{$FG[075]%}$(git_prompt_info)%{$reset_color%}%{$FG[032]%})%{$reset_color%}"
     else
-      echo "%{$FX[bold]%}%{$FG[214]%}$(git_prompt_info)%{$reset_color%}"
+      echo "%{$FG[032]%}(%{$reset_color%}%{$FX[bold]%}%{$FG[214]%}$(git_prompt_info)%{$reset_color%}%{$FG[032]%})%{$reset_color%}"
     fi
   fi
 }
@@ -31,7 +31,7 @@ git_dirty() {
 git_prompt_info () {
  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
 # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
+echo "${ref#refs/heads/}$(uncomitted_changes)"
 }
 
 unpushed () {
@@ -81,7 +81,7 @@ directory_name() {
   echo "%{$FX[bold]%}%{$FG[032]%}%1/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt)in $(directory_name)%{$FG[032]%}(%{$reset_color%}$(git_dirty)$(uncomitted_changes)%{$FG[032]%})%{$reset_color%}› '
+export PROMPT=$'\n$(rb_prompt)in $(directory_name)$(git_dirty)› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
