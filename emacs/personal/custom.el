@@ -30,4 +30,11 @@
     (set-frame-parameter nil 'alpha '(85 50))))
 (global-set-key (kbd "C-c C-t") 'toggle-transparency)
 
+
+(add-to-list 'load-path "~/.dotfiles/emacs/personal/Enhanced-Ruby-Mode/")
+(autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+
+(scroll-bar-mode 0)
 ;;; custom.el ends here

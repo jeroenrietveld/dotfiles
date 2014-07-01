@@ -2,7 +2,7 @@
 ;;; Commentary:
 
 ; The most painful part of Emacs fo far seems to be the lack of decent
-; project tree navigation. The following features are needed:
+; project tree navigation.  The following features are needed:
 ; * Stays with/inside the current pane (emacs-nav seem to do, but does no tree)
 ; * Stays the same length
 ; * Shows current file
@@ -28,6 +28,7 @@
   (select-frame-set-input-focus (window-frame (selected-window)))))
 
 (define-key speedbar-file-key-map "+" 'speedbar-create-directory)
+(define-key speedbar-file-key-map "m" 'speedbar-options-menu)
 
 (setq sr-speedbar-skip-other-window-p 1)
 (setq sr-speedbar-width 40)
@@ -80,6 +81,7 @@
   (concat current-dir ""))
 
 (defun speedbar-refresh-with-project (root-dir)
+  "Refreshes speedbar with the ROOT-DIR."
   (when (and (not (equal root-dir sr-speedbar-last-refresh-dictionary))
              (not (sr-speedbar-window-p)))
     (setq sr-speedbar-last-refresh-dictionary root-dir))
@@ -87,6 +89,7 @@
   (speedbar-refresh))
 
 (defun open-current-project-speedbar (root-dir)
+  "Opens the current project in speedbar with ROOT-DIR."
   (if (not (sr-speedbar-exist-p))
     (sr-speedbar-toggle))
   (speedbar-refresh-with-project root-dir))
@@ -114,5 +117,18 @@
       (if (not (eq original-window (get-buffer-window speedbar-buffer)))
           (select-window original-window)
         (other-window 1)))))
+
+(defun speedbar-options-menu (option)
+  "Options menu for speedbar.
+
+   OPTION is the argument supplied by interactive"
+  (interactive "sMenu options [a(dd), r(emove)]:"))
+
+;(defun speedbar-open-in-split
+;  "Open file in split."
+;  (setq new-window (split-window-horizontally (select-window next-window))
+;        (message new-window))
+
+;(speedbar-open-in-split)
 
 ;;; sr-speedbar.el ends here
