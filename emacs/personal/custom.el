@@ -37,6 +37,6 @@
 (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
 (scroll-bar-mode 0);; Scrollbars? No thanks..
-(winnder-mode 1);; undo and redo window configurations
+(winner-mode 1);; undo and redo window configurations
 
 ;;; custom.el ends here
