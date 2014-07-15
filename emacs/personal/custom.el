@@ -39,4 +39,10 @@
 (scroll-bar-mode 0);; Scrollbars? No thanks..
 (winner-mode 1);; undo and redo window configurations
 
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+
+;; Use Emacs terminfo, not system terminfo
+(setq system-uses-terminfo nil)
+
 ;;; custom.el ends here
