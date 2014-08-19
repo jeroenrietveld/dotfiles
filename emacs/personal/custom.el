@@ -36,7 +36,12 @@
 (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
+(add-to-list 'auto-mode-alist '("\\.twig\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\.twig\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\.twig\\'" . web-mode))
+
 (scroll-bar-mode 0);; Scrollbars? No thanks..
+
 (winner-mode 1);; undo and redo window configurations
 
 (setq-default indent-tabs-mode nil)
