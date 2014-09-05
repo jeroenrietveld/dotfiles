@@ -56,4 +56,5 @@
 (sp-pair "[" nil :actions :rem)
 (sp-pair "'" nil :actions :rem)
 (sp-pair "`" nil :actions :rem)
+(setq sp-autoescape-string-quote nil)
 ;;; custom.el ends here
