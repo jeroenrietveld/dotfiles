@@ -53,5 +53,7 @@
 (sp-pair "(" nil :actions :rem)
 (sp-pair "\"" nil :actions :rem)
 (sp-pair "{" nil :actions :rem)
+(sp-pair "[" nil :actions :rem)
+(sp-pair "'" nil :actions :rem)
 (sp-pair "`" nil :actions :rem)
 ;;; custom.el ends here
