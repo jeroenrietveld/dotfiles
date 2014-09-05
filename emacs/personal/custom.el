@@ -50,4 +50,8 @@
 ;; Use Emacs terminfo, not system terminfo
 (setq system-uses-terminfo nil)
 
+(sp-pair "(" nil :actions :rem)
+(sp-pair "\"" nil :actions :rem)
+(sp-pair "{" nil :actions :rem)
+(sp-pair "`" nil :actions :rem)
 ;;; custom.el ends here
